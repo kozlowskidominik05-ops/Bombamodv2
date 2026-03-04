@@ -1,1 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "bombamod",
+  "version": "1.0.0",
+  "name": "Bomba Mod",
+  "entrypoints": {
+    "client": [
+      "com.twojanazwa.bombamod.BombaMod"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.5",
+    "minecraft": ">=1.21"
+  }
+}
 
