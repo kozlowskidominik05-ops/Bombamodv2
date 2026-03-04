@@ -1,0 +1,42 @@
+buildscript {
+    repositories {
+        maven { url "https://libraries.minecraft.net" }
+        maven { url "https://maven.fabricmc.net" }
+    }
+    dependencies {
+        classpath "fabric-loom:1.6-SNAPSHOT"
+    }
+}
+
+apply plugin: "fabric-loom"
+
+version = "1.0.0"
+group = "com.twojanazwa.bombamod"
+
+repositories {
+    maven { url "https://maven.fabricmc.net" }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:1.21"
+    mappings "net.fabricmc:yarn:1.21+build.10"
+    modImplementation "net.fabricmc:fabric-loader:0.15.11"
+}
+
+processResources {
+    inputs.property "version", version
+    from(sourceSets.main.resources) {
+        replaceProperties "version": version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = "UTF-8"
+    it.options.release = 21
+}
+
+jar {
+    from("mappings") {
+        rename "(.+)1.21\\+build.10(.+)", "$1$2"
+    }
+}
